@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\URLController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -20,4 +19,7 @@ Route::get('/', function () {
     return Inertia::render('Home');
 })->name("home");
 
-require __DIR__.'/auth.php';
+Route::get("/{shortUrl}", [URLController::class, "redirect"]);
+Route::post("/", [URLController::class, "store"])->name("store.shorturl");
+
+require __DIR__ . '/auth.php';
